@@ -91,8 +91,14 @@ export class UserService {
   private async returnFormat(user: User, response: Response) {
     const { accessToken, refreshToken } = await this.createTokens(user.id);
 
-    response.cookie('accessToken', accessToken);
-    response.cookie('refreshToken', refreshToken);
+    response.cookie('accessToken', accessToken, {
+      maxAge: 60 * 60 * 1000,
+      httpOnly: true,
+    });
+    response.cookie('refreshToken', refreshToken, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    });
 
     return {
       id: user.id,

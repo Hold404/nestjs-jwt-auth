@@ -11,7 +11,10 @@ async function bootstrap() {
   await prismaService.enableShutdownHooks(app);
 
   app.setGlobalPrefix('api/v1');
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:3000'],
+    credentials: true,
+  });
   app.use(cookieParser());
 
   const config = new DocumentBuilder()
