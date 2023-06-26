@@ -93,11 +93,11 @@ export class UserService {
 
     response.cookie('accessToken', accessToken, {
       maxAge: 60 * 60 * 1000,
-      httpOnly: true,
+      httpOnly: false,
     });
     response.cookie('refreshToken', refreshToken, {
       maxAge: 30 * 24 * 60 * 60 * 1000,
-      httpOnly: true,
+      httpOnly: false,
     });
 
     return {
